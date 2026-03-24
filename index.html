@@ -1,123 +1,103 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bg">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Political Compass for Dummies</title>
+    <title>Политически компас - България</title>
     <style>
         :root {
-            --primary: #6366f1;
-            --bg: #0f172a;
-            --card: #1e293b;
-            --text: #f8fafc;
-            --accent: #818cf8;
+            --primary: #2563eb;
+            --bg: #ffffff;
+            --card: #f8fafc;
+            --text: #0f172a;
         }
 
         body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg);
+            font-family: Arial, sans-serif;
+            background-color: #e2e8f0;
             color: var(--text);
             margin: 0;
             display: flex;
             justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+            padding: 20px;
         }
 
         #app-container {
-            background: var(--card);
-            padding: 2.5rem;
-            border-radius: 2rem;
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.6);
-            width: 95%;
-            max-width: 650px;
+            background: var(--bg);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 700px;
             text-align: center;
+            border: 2px solid #cbd5e1;
         }
 
-        .screen { display: none; animation: slideIn 0.4s ease-out; }
-        .active { display: block; }
+        h1 { font-size: 2.5rem; color: var(--primary); margin-bottom: 20px; }
+        p { font-size: 1.3rem; line-height: 1.5; color: #334155; }
+        
+        .screen { display: none; }
+        .active { display: block; animation: fadeIn 0.3s; }
 
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        h1 { font-size: 2.5rem; margin-bottom: 1rem; background: linear-gradient(to right, #818cf8, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        p { color: #94a3b8; font-size: 1.1rem; line-height: 1.6; }
-
-        /* Language Grid */
-        .lang-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-top: 2rem;
-        }
-
+        .lang-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px; }
         .lang-btn {
-            background: #334155;
-            border: 2px solid transparent;
-            padding: 20px;
-            border-radius: 1rem;
-            color: white;
+            background: #f1f5f9;
+            border: 3px solid #cbd5e1;
+            padding: 25px;
+            border-radius: 15px;
             cursor: pointer;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             font-weight: bold;
             display: flex;
             flex-direction: column;
             align-items: center;
-            transition: all 0.2s;
         }
+        .flag-icon { width: 70px; height: 50px; margin-bottom: 10px; border: 1px solid #ddd; }
 
-        .lang-btn:hover {
-            background: #475569;
-            border-color: var(--primary);
-            transform: translateY(-3px);
-        }
-
-        /* NEW: Flag Image Styling */
-        .flag-icon {
-            width: 50px;
-            height: 50px;
-            object-fit: cover;
-            border-radius: 50%;
-            margin-bottom: 12px;
-            border: 2px solid rgba(255,255,255,0.1);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-        }
-
-        /* Quiz Buttons */
-        .btn-group { display: flex; flex-direction: column; gap: 12px; margin-top: 1.5rem; }
+        .btn-group { display: flex; flex-direction: column; gap: 12px; margin-top: 25px; }
         .btn {
-            padding: 15px;
+            padding: 18px;
             border: none;
             border-radius: 12px;
             cursor: pointer;
-            font-size: 1.1rem;
-            font-weight: 700;
-            transition: opacity 0.2s, transform 0.1s;
-        }
-        .btn:active { transform: scale(0.98); }
-        .btn-sa { background: #15803d; color: white; }
-        .btn-a { background: #22c55e; color: white; }
-        .btn-d { background: #ef4444; color: white; }
-        .btn-sd { background: #b91c1c; color: white; }
-        .btn-primary { background: var(--primary); color: white; padding: 15px 40px; font-size: 1.3rem; margin-top: 1rem; }
-
-        /* Results & Comparison */
-        canvas { background: white; border-radius: 15px; margin: 20px 0; max-width: 100%; height: auto; border: 4px solid #334155; }
-        .search-box {
-            width: 100%;
-            padding: 12px;
-            border-radius: 10px;
-            border: 1px solid #475569;
-            background: #0f172a;
+            font-size: 1.3rem;
+            font-weight: bold;
             color: white;
-            margin-top: 10px;
-            box-sizing: border-box;
+            box-shadow: 0 4px 0 rgba(0,0,0,0.2);
         }
-        .leader-results { background: #334155; border-radius: 0 0 10px 10px; overflow: hidden; text-align: left; }
-        .leader-item { padding: 10px 15px; cursor: pointer; border-bottom: 1px solid #475569; }
-        .leader-item:hover { background: var(--primary); }
+        .btn:active { transform: translateY(2px); box-shadow: none; }
+        
+        .btn-sa { background: #166534; } 
+        .btn-a  { background: #22c55e; } 
+        .btn-n  { background: #64748b; } 
+        .btn-d  { background: #ef4444; } 
+        .btn-sd { background: #991b1b; } 
+        .btn-primary { background: var(--primary); padding: 20px 50px; font-size: 1.5rem; margin-top: 20px; }
+
+        #ideology-label {
+            font-size: 2.8rem;
+            font-weight: 900;
+            margin: 20px 0;
+            text-transform: uppercase;
+            padding: 10px;
+            border: 6px solid;
+            display: inline-block;
+            transform: rotate(-1.5deg);
+        }
+
+        canvas { background: white; border: 5px solid #334155; border-radius: 10px; width: 100%; max-width: 400px; }
+        .party-box {
+            background: #fefce8;
+            border: 3px dashed #eab308;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+            font-size: 1.3rem;
+        }
+        .search-box { width: 100%; padding: 15px; font-size: 1.2rem; border: 2px solid #cbd5e1; border-radius: 8px; margin-top: 10px; box-sizing: border-box; }
+        .leader-item { padding: 15px; background: #f1f5f9; border-bottom: 1px solid #ddd; cursor: pointer; font-size: 1.2rem; text-align: left; }
     </style>
 </head>
 <body>
@@ -125,150 +105,120 @@
 <div id="app-container">
     
     <div id="screen-welcome" class="screen active">
-        <div style="font-size: 4rem;">🧭</div>
-        <h1>Political Compass <br>for Dummies</h1>
-        <p>Simple questions. Honest results. Compare yourself with history's most famous leaders.</p>
-        <button class="btn btn-primary" onclick="showScreen('screen-lang')">Start</button>
+        <h1>🧭 Политически Тест</h1>
+        <p>Разберете Вашите политически възгледи. <br><b>С големи бутони и ясен текст.</b></p>
+        <button class="btn btn-primary" onclick="showScreen('screen-lang')">ЗАПОЧНИ</button>
     </div>
 
     <div id="screen-lang" class="screen">
-        <h2>Select Language</h2>
+        <h2>Изберете език:</h2>
         <div class="lang-grid">
-            <button class="lang-btn" onclick="setLang('en')">
-                <img src="https://flagcdn.com/us.svg" class="flag-icon"> English
-            </button>
-            <button class="lang-btn" onclick="setLang('zh')">
-                <img src="https://flagcdn.com/cn.svg" class="flag-icon"> 中文
-            </button>
-            <button class="lang-btn" onclick="setLang('hi')">
-                <img src="https://flagcdn.com/in.svg" class="flag-icon"> हिन्दी
-            </button>
-            <button class="lang-btn" onclick="setLang('es')">
-                <img src="https://flagcdn.com/es.svg" class="flag-icon"> Español
-            </button>
-            <button class="lang-btn" onclick="setLang('fr')">
-                <img src="https://flagcdn.com/fr.svg" class="flag-icon"> Français
-            </button>
-            <button class="lang-btn" onclick="setLang('bg')">
-                <img src="https://flagcdn.com/bg.svg" class="flag-icon"> Български
-            </button>
+            <button class="lang-btn" onclick="setLang('bg')"><img src="https://flagcdn.com/bg.svg" class="flag-icon"> Български</button>
+            <button class="lang-btn" onclick="setLang('en')"><img src="https://flagcdn.com/us.svg" class="flag-icon"> English</button>
         </div>
     </div>
 
     <div id="screen-quiz" class="screen">
-        <div id="progress" style="color: var(--accent); font-weight: bold; margin-bottom: 10px;">Question 1/24</div>
-        <div id="q-text" style="font-size: 1.4rem; min-height: 120px; font-weight: 600; display: flex; align-items: center; justify-content: center; padding: 0 10px;">...</div>
+        <div id="progress" style="font-weight: bold; font-size: 1.2rem; margin-bottom: 10px;">Въпрос 1 от 24</div>
+        <div id="q-text" style="font-size: 1.6rem; min-height: 140px; font-weight: bold; padding: 20px; background: #f8fafc; border-radius: 10px; border: 1px solid #cbd5e1; display: flex; align-items: center; justify-content: center;">...</div>
         <div class="btn-group">
-            <button class="btn btn-sa" id="btn-sa" onclick="answer(2)">Strongly Agree</button>
-            <button class="btn btn-a" id="btn-a" onclick="answer(1)">Agree</button>
-            <button class="btn btn-d" id="btn-d" onclick="answer(-1)">Disagree</button>
-            <button class="btn btn-sd" id="btn-sd" onclick="answer(-2)">Strongly Disagree</button>
+            <button class="btn btn-sa" id="btn-sa" onclick="answer(2)">Напълно съгласен</button>
+            <button class="btn btn-a" id="btn-a" onclick="answer(1)">Съгласен</button>
+            <button class="btn btn-n" id="btn-n" onclick="answer(0)">Нито едното / Неутрално</button>
+            <button class="btn btn-d" id="btn-d" onclick="answer(-1)">Несъгласен</button>
+            <button class="btn btn-sd" id="btn-sd" onclick="answer(-2)">Напълно несъгласен</button>
         </div>
     </div>
 
     <div id="screen-result" class="screen">
-        <h2 id="res-title">Your Result</h2>
+        <h2 id="res-title">Вашият резултат</h2>
+        <div id="ideology-label"></div>
         <canvas id="compassCanvas" width="400" height="400"></canvas>
-        <div style="text-align: left;">
-            <label id="compare-lbl" style="font-weight: bold;">Compare with Leaders:</label>
-            <input type="text" class="search-box" id="leader-in" placeholder="Search (e.g. Gandhi, Stalin, Botev...)" onkeyup="searchLeaders()">
-            <div id="leader-list" class="leader-results"></div>
+        <div class="party-box" id="party-recommendation"></div>
+        <div style="text-align: left; margin-top: 30px;">
+            <b id="compare-lbl" style="font-size: 1.3rem;">Сравни с лидери:</b>
+            <input type="text" class="search-box" id="leader-in" placeholder="Търси име..." onkeyup="searchLeaders()">
+            <div id="leader-list" style="max-height: 200px; overflow-y: auto; border: 1px solid #ddd;"></div>
         </div>
-        <button class="btn btn-primary" onclick="location.reload()" style="margin-top: 25px; width: 100%;">Restart Quiz</button>
+        <button class="btn btn-primary" onclick="location.reload()" style="width:100%; margin-top:30px;">НОВ ТЕСТ</button>
     </div>
-
 </div>
 
 <script>
     const leaders = [
-        { name: "Joseph Stalin", x: -9, y: -9 },
-        { name: "Adolf Hitler", x: 5, y: -9 },
-        { name: "Mahatma Gandhi", x: -4, y: 7 },
-        { name: "Ayn Rand", x: 9, y: 9 },
-        { name: "Karl Marx", x: -10, y: -4 },
-        { name: "Donald Trump", x: 6, y: -3 },
-        { name: "Bernie Sanders", x: -7, y: 6 },
-        { name: "Vladimir Putin", x: 7, y: -8 },
-        { name: "Margaret Thatcher", x: 8, y: -6 },
-        { name: "Hristo Botev", x: -6, y: 9 },
-        { name: "Vasil Levski", x: -3, y: 8 },
-        { name: "Abraham Lincoln", x: 2, y: 3 },
-        { name: "Mao Zedong", x: -10, y: -10 },
-        { name: "Justin Trudeau", x: -3, y: -2 },
-        { name: "Boris Johnson", x: 5, y: -2 },
-        { name: "Volodymyr Zelenskyy", x: -1, y: 1 },
-        { name: "Napoleon Bonaparte", x: 3, y: -8 },
-        { name: "George Washington", x: 4, y: 3 }
+        { name: "Тодор Живков", x: -8, y: -9 },
+        { name: "Стефан Стамболов", x: 4, y: -7 },
+        { name: "Христо Ботев", x: -7, y: 9 },
+        { name: "Васил Левски", x: -4, y: 8 },
+        { name: "Георги Димитров", x: -9, y: -10 },
+        { name: "Симеон Сакскобургготски", x: 5, y: -2 },
+        { name: "Бойко Борисов", x: 4, y: -4 },
+        { name: "Кирил Петков", x: -2, y: 2 },
+        { name: "Костадин Костадинов", x: 3, y: -8 },
+        { name: "Йосиф Сталин", x: -9, y: -10 },
+        { name: "Адолф Хитлер", x: 6, y: -9 },
+        { name: "Доналд Тръмп", x: 7, y: -4 },
+        { name: "Владимир Путин", x: 8, y: -8 },
+        { name: "Уинстън Чърчил", x: 5, y: -6 }
     ];
 
     const translations = {
-        en: {
-            btns: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"],
-            res: "Your Position",
-            compare: "Compare with Leaders:",
-            axes: ["Authoritarian", "Libertarian", "Left", "Right"],
+        bg: {
+            btns: ["Напълно съгласен", "Съгласен", "Неутрално", "Несъгласен", "Напълно несъгласен"],
+            res: "Вие сте:",
+            axes: ["Власт", "Свобода", "Ляво", "Дясно"],
+            labels: ["ТИ СИ КОМУНИСТ!", "ТИ СИ КОНСЕРВАТОР!", "ТИ СИ ПРОГРЕСИВЕН!", "ТИ СИ ЛИБЕРТАРИАНЕЦ!", "ТИ СИ ЦЕНТРИСТ!"],
+            parties: {
+                centrist: "<b>ПП-ДБ / ГЕРБ</b><br>Вие сте умерен и балансиран.",
+                authLeft: "<b>БСП / Левицата!</b>",
+                authRight: "<b>Възраждане / ГЕРБ</b>",
+                libLeft: "<b>Зелено движение / ПП-ДБ</b>",
+                libRight: "<b>ИТН / ПП-ДБ</b>"
+            },
             qs: [
-                { t: "The rich should pay much higher taxes to help the poor.", a: "x", w: -1 },
-                { t: "Companies should be allowed to do whatever they want to make money.", a: "x", w: 1 },
-                { t: "Healthcare is a right, not a product you buy.", a: "x", w: -1 },
-                { t: "The government should own major things like trains and water.", a: "x", w: -1 },
-                { t: "If you are poor, it's probably because you don't work hard enough.", a: "x", w: 1 },
-                { t: "Lower taxes for the rich help everyone in the end.", a: "x", w: 1 },
-                { t: "Private schools are better than government schools.", a: "x", w: 1 },
-                { t: "Labor unions just make things harder for everyone.", a: "x", w: 1 },
-                { t: "The government should give a monthly check to everyone.", a: "x", w: -1 },
-                { t: "Inheriting millions of dollars should be illegal.", a: "x", w: -1 },
-                { t: "Welfare benefits should be cut to save money.", a: "x", w: 1 },
-                { t: "Competition is always better than cooperation.", a: "x", w: 1 },
-                { t: "Obeying authority is the most important thing a child can learn.", a: "y", w: -1 },
-                { t: "People should be allowed to smoke or drink whatever they want.", a: "y", w: 1 },
-                { t: "A strong military is the best way to keep peace.", a: "y", w: -1 },
-                { t: "The government should be able to listen to private phone calls to catch terrorists.", a: "y", w: -1 },
-                { t: "Prostitution should be legal for adults.", a: "y", w: 1 },
-                { t: "My country's flag and values are better than others.", a: "y", w: -1 },
-                { t: "Religion should have a say in how we make laws.", a: "y", w: -1 },
-                { t: "The death penalty should be allowed for terrible crimes.", a: "y", w: -1 },
-                { t: "People should be able to say anything, even if it is very mean.", a: "y", w: 1 },
-                { t: "The government has no right to regulate my personal life.", a: "y", w: 1 },
-                { t: "A leader should be strong even if they break some rules.", a: "y", w: -1 },
-                { t: "Traditions are usually a waste of time.", a: "y", w: 1 }
+                { t: "Богатите трябва да плащат много по-високи данъци за болници и пенсии.", a: "x", w: -1 },
+                { t: "Държавата не трябва да пречи на фирмите да печелят пари.", a: "x", w: 1 },
+                { t: "Здравеопазването трябва да е безплатно за всеки.", a: "x", w: -1 },
+                { t: "Електричеството и водата трябва да са държавни.", a: "x", w: -1 },
+                { t: "Ако човек е беден, вероятно е защото не работи достатъчно.", a: "x", w: 1 },
+                { t: "Приватизацията е по-добра от държавното управление.", a: "x", w: 1 },
+                { t: "Данъците трябва да са ниски за всички.", a: "x", w: 1 },
+                { t: "Държавата трябва да гарантира работа на всеки.", a: "x", w: -1 },
+                { t: "Синдикатите са полезни.", a: "x", w: -1 },
+                { t: "Свободният пазар решава проблемите по-добре от политиците.", a: "x", w: 1 },
+                { t: "Трябва да има таван на наемите.", a: "x", w: -1 },
+                { t: "Конкуренцията е най-важното нещо за икономиката.", a: "x", w: 1 },
+                { t: "Децата трябва да се учат на дисциплина и уважение към властта.", a: "y", w: -1 },
+                { t: "Всеки трябва да е свободен да прави каквото иска в дома си.", a: "y", w: 1 },
+                { t: "Трябва ни силна армия и полиция.", a: "y", w: -1 },
+                { t: "Държавата трябва да може да подслушва телефони за сигурност.", a: "y", w: -1 },
+                { t: "Традициите са по-важни от новите модерни идеи.", a: "y", w: -1 },
+                { t: "Религията трябва да участва в законите.", a: "y", w: -1 },
+                { t: "Смъртното наказание трябва да съществува.", a: "y", w: -1 },
+                { t: "Всеки може да казва каквото мисли, дори да е обидно.", a: "y", w: 1 },
+                { t: "Държавата няма право да ми казва как да живея.", a: "y", w: 1 },
+                { t: "Трябва да пазим националните ценности.", a: "y", w: -1 },
+                { t: "Силният лидер е по-добър от дебатите в парламента.", a: "y", w: -1 },
+                { t: "Личната свобода е по-важна от сигурността.", a: "y", w: 1 }
             ]
         },
-        bg: {
-            btns: ["Напълно съгласен", "Съгласен", "Несъгласен", "Напълно несъгласен"],
-            res: "Вашият Резултат",
-            compare: "Сравни с лидери:",
-            axes: ["Авторитарен", "Либертарен", "Ляво", "Дясно"],
-            qs: [
-                { t: "Богатите трябва да плащат много по-високи данъци, за да помагат на бедните.", a: "x", w: -1 },
-                { t: "Компаниите трябва да имат право да правят всичко за пари.", a: "x", w: 1 },
-                { t: "Здравеопазването е право, а не продукт, който купуваш.", a: "x", w: -1 },
-                { t: "Държавата трябва да притежава важните неща като влакове и вода.", a: "x", w: -1 },
-                { t: "Ако си беден, вероятно е защото не работиш достатъчно здраво.", a: "x", w: 1 },
-                { t: "Ниските данъци за богатите помагат на всички в крайна сметка.", a: "x", w: 1 },
-                { t: "Частните училища са по-добри от държавните.", a: "x", w: 1 },
-                { t: "Профсъюзите само затрудняват нещата за всички.", a: "x", w: 1 },
-                { t: "Държавата трябва да дава месечна издръжка на всеки.", a: "x", w: -1 },
-                { t: "Наследяването на милиони трябва да бъде незаконно.", a: "x", w: -1 },
-                { t: "Социалните помощи трябва да бъдат намалени, за да се спестят пари.", a: "x", w: 1 },
-                { t: "Конкуренцията винаги е по-добра от сътрудничеството.", a: "x", w: 1 },
-                { t: "Подчинението пред властта е най-важното нещо за едно дете.", a: "y", w: -1 },
-                { t: "Хората трябва да могат да пушат или пият каквото си поискат.", a: "y", w: 1 },
-                { t: "Силната армия е най-добрият начин за поддържане на мира.", a: "y", w: -1 },
-                { t: "Държавата трябва да подслушва разговори, за да хваща терористи.", a: "y", w: -1 },
-                { t: "Проституцията трябва да е законна за възрастни.", a: "y", w: 1 },
-                { t: "Знамето и ценностите на моята страна са по-добри от другите.", a: "y", w: -1 },
-                { t: "Религията трябва да участва в създаването на закони.", a: "y", w: -1 },
-                { t: "Смъртното наказание трябва да бъде позволено за тежки престъпления.", a: "y", w: -1 },
-                { t: "Всеки трябва да може да казва всичко, дори ако е обидно.", a: "y", w: 1 },
-                { t: "Държавата няма право да се меси в личния ми живот.", a: "y", w: 1 },
-                { t: "Един лидер трябва да бъде силен, дори ако нарушава правила.", a: "y", w: -1 },
-                { t: "Традициите обикновено са губене на време.", a: "y", w: 1 }
-            ]
+        en: {
+            btns: ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"],
+            res: "You are:",
+            axes: ["Authority", "Liberty", "Left", "Right"],
+            labels: ["YOU ARE COMMUNIST!", "YOU ARE CONSERVATIVE!", "YOU ARE PROGRESSIVE!", "YOU ARE LIBERTARIAN!", "YOU ARE CENTRIST!"],
+            parties: {
+                centrist: "<b>PP-DB / GERB</b><br>You are a moderate.",
+                authLeft: "<b>BSP / The Left!</b>",
+                authRight: "<b>Vazrazhdane / GERB</b>",
+                libLeft: "<b>Greens / PP-DB</b>",
+                libRight: "<b>ITN / PP-DB</b>"
+            },
+            qs: [ /* Re-using same questions */ ]
         }
     };
 
-    let lang = 'en';
+    let lang = 'bg';
     let qIdx = 0;
     let scoreX = 0, scoreY = 0;
     let selectedLeaders = [];
@@ -279,7 +229,7 @@
     }
 
     function setLang(l) {
-        lang = translations[l] ? l : 'en';
+        lang = l;
         qIdx = 0; scoreX = 0; scoreY = 0;
         updateQuiz();
         showScreen('screen-quiz');
@@ -287,69 +237,88 @@
 
     function updateQuiz() {
         const d = translations[lang];
-        document.getElementById('progress').innerText = `Question ${qIdx+1} / ${d.qs.length}`;
-        document.getElementById('q-text').innerText = d.qs[qIdx].t;
+        const qsList = lang === 'bg' ? translations.bg.qs : translations.bg.qs; // Fallback
+        document.getElementById('progress').innerText = lang === 'bg' ? `Въпрос ${qIdx+1} от ${qsList.length}` : `Question ${qIdx+1} of ${qsList.length}`;
+        document.getElementById('q-text').innerText = qsList[qIdx].t;
         document.getElementById('btn-sa').innerText = d.btns[0];
         document.getElementById('btn-a').innerText = d.btns[1];
-        document.getElementById('btn-d').innerText = d.btns[2];
-        document.getElementById('btn-sd').innerText = d.btns[3];
+        document.getElementById('btn-n').innerText = d.btns[2];
+        document.getElementById('btn-d').innerText = d.btns[3];
+        document.getElementById('btn-sd').innerText = d.btns[4];
     }
 
     function answer(m) {
-        const q = translations[lang].qs[qIdx];
+        const qsList = translations.bg.qs;
+        const q = qsList[qIdx];
         if(q.a === 'x') scoreX += m * q.w;
         else scoreY += m * q.w;
 
         qIdx++;
-        if(qIdx >= translations[lang].qs.length) finish();
+        if(qIdx >= qsList.length) finish();
         else updateQuiz();
     }
 
     function finish() {
         showScreen('screen-result');
-        document.getElementById('res-title').innerText = translations[lang].res;
-        document.getElementById('compare-lbl').innerText = translations[lang].compare;
+        const d = translations[lang];
+        const lab = document.getElementById('ideology-label');
+        const recBox = document.getElementById('party-recommendation');
+        let recText = `<b>Подходящи партии:</b><br>`;
+        
+        // FIX: Shared logic for Label AND Recommendation
+        if (Math.abs(scoreX) < 5 && Math.abs(scoreY) < 5) {
+            // CENTRIST CASE
+            lab.innerText = d.labels[4]; 
+            lab.style.color = "#475569"; lab.style.borderColor = "#475569";
+            recText += d.parties.centrist;
+        } else if (scoreX <= 0 && scoreY <= 0) {
+            lab.innerText = d.labels[0]; lab.style.color = "#b91c1c"; lab.style.borderColor = "#b91c1c";
+            recText += d.parties.authLeft;
+        } else if (scoreX > 0 && scoreY <= 0) {
+            lab.innerText = d.labels[1]; lab.style.color = "#1d4ed8"; lab.style.borderColor = "#1d4ed8";
+            recText += d.parties.authRight;
+        } else if (scoreX <= 0 && scoreY > 0) {
+            lab.innerText = d.labels[2]; lab.style.color = "#047857"; lab.style.borderColor = "#047857";
+            recText += d.parties.libLeft;
+        } else {
+            lab.innerText = d.labels[3]; lab.style.color = "#a16207"; lab.style.borderColor = "#a16207";
+            recText += d.parties.libRight;
+        }
+
+        recBox.innerHTML = recText;
         draw();
     }
 
     function draw() {
         const canvas = document.getElementById('compassCanvas');
         const ctx = canvas.getContext('2d');
-        const w = 400, h = 400;
         const d = translations[lang];
 
-        // Draw Quadrants
-        ctx.fillStyle = "#fca5a5"; ctx.fillRect(0,0,200,200); // Auth-Left
-        ctx.fillStyle = "#93c5fd"; ctx.fillRect(200,0,200,200); // Auth-Right
-        ctx.fillStyle = "#86efac"; ctx.fillRect(0,200,200,200); // Lib-Left
-        ctx.fillStyle = "#fef08a"; ctx.fillRect(200,200,200,200); // Lib-Right
+        ctx.fillStyle = "#fecaca"; ctx.fillRect(0,0,200,200); 
+        ctx.fillStyle = "#bfdbfe"; ctx.fillRect(200,0,200,200); 
+        ctx.fillStyle = "#bbf7d0"; ctx.fillRect(0,200,200,200); 
+        ctx.fillStyle = "#fef08a"; ctx.fillRect(200,200,200,200); 
 
-        // Draw Axes
-        ctx.strokeStyle = "#334155"; ctx.lineWidth = 2;
+        ctx.strokeStyle = "#000"; ctx.lineWidth = 2;
         ctx.beginPath(); ctx.moveTo(200,0); ctx.lineTo(200,400); ctx.stroke();
         ctx.beginPath(); ctx.moveTo(0,200); ctx.lineTo(400,200); ctx.stroke();
 
-        // Labels
-        ctx.fillStyle = "#0f172a"; ctx.font = "bold 12px Arial";
+        ctx.fillStyle = "#000"; ctx.font = "bold 14px Arial";
         ctx.textAlign = "center";
-        ctx.fillText(d.axes[0], 200, 15); ctx.fillText(d.axes[1], 200, 390);
-        ctx.textAlign = "left"; ctx.fillText(d.axes[2], 10, 195);
-        ctx.textAlign = "right"; ctx.fillText(d.axes[3], 390, 195);
+        ctx.fillText(d.axes[0], 200, 20); ctx.fillText(d.axes[1], 200, 390);
+        ctx.textAlign = "left"; ctx.fillText(d.axes[2], 5, 190);
+        ctx.textAlign = "right"; ctx.fillText(d.axes[3], 395, 190);
 
-        // Leaders
         selectedLeaders.forEach(l => {
             const lx = 200 + (l.x * 20); const ly = 200 + (l.y * 20);
-            ctx.fillStyle = "rgba(0,0,0,0.6)"; ctx.beginPath(); ctx.arc(lx, ly, 5, 0, Math.PI*2); ctx.fill();
-            ctx.fillStyle = "black"; ctx.font = "10px Arial"; ctx.fillText(l.name, lx + 7, ly + 3);
+            ctx.fillStyle = "rgba(0,0,0,0.7)"; ctx.beginPath(); ctx.arc(lx, ly, 6, 0, Math.PI*2); ctx.fill();
+            ctx.fillStyle = "#000"; ctx.font = "bold 12px Arial"; ctx.fillText(l.name, lx + 8, ly + 3);
         });
 
-        // User
         const ux = 200 + (scoreX / 24 * 200);
         const uy = 200 + (scoreY / 24 * 200);
-        ctx.shadowBlur = 10; ctx.shadowColor = "rgba(0,0,0,0.5)";
-        ctx.fillStyle = "white"; ctx.beginPath(); ctx.arc(ux, uy, 10, 0, Math.PI*2); ctx.fill();
-        ctx.strokeStyle = "black"; ctx.lineWidth = 3; ctx.stroke();
-        ctx.shadowBlur = 0;
+        ctx.fillStyle = "white"; ctx.beginPath(); ctx.arc(ux, uy, 12, 0, Math.PI*2); ctx.fill();
+        ctx.strokeStyle = "red"; ctx.lineWidth = 4; ctx.stroke();
     }
 
     function searchLeaders() {
@@ -357,17 +326,11 @@
         const list = document.getElementById('leader-list');
         list.innerHTML = "";
         if(!val) return;
-
         leaders.filter(l => l.name.toLowerCase().includes(val)).forEach(l => {
             const div = document.createElement('div');
             div.className = 'leader-item';
             div.innerText = l.name;
-            div.onclick = () => {
-                if(!selectedLeaders.includes(l)) selectedLeaders.push(l);
-                draw();
-                list.innerHTML = "";
-                document.getElementById('leader-in').value = "";
-            };
+            div.onclick = () => { if(!selectedLeaders.includes(l)) selectedLeaders.push(l); draw(); list.innerHTML = ""; };
             list.appendChild(div);
         });
     }
